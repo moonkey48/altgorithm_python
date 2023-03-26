@@ -39,3 +39,7 @@ if __name__ == "__main__":
     print("?")
     tommorow = advanced_day(today)
     print(tommorow)
+    
+    
+    
+    
