@@ -12,7 +12,8 @@ while total > 0:
     if  total - coin_list[current_coin] < 0:
         current_coin -= 1
     elif total - coin_list[current_coin] >= 0:
-        total -= coin_list[current_coin]
-        count += 1
+        divider = int(total / coin_list[current_coin]) 
+        total -= coin_list[current_coin] * divider
+        count += divider
 
 print(count)
