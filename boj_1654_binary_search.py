@@ -36,5 +36,3 @@ while st <= en:
         st = mid + 1
 
 print(max(res))
-
-
