@@ -15,6 +15,6 @@ def next_num(count, prev_num):
             arr[count] = i
             visited[i - 1] = True
             next_num(count + 1, arr[count])        
-            visited[i - 1] = False
+            visited[i - 1 ] = False
     
 next_num(0, 1)
