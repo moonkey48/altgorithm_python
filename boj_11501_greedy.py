@@ -50,19 +50,19 @@ for i in range(n):
     c_length = case_length_list[i]
     stocks = stock_total[i]
     sum = 0
-    cur_pos = 0
+    cur_pos = len(stocks) - 1
     
-    while cur_pos < c_length:
+    while cur_pos >= 0:
         max_num = max(stocks[cur_pos:])
         
-        while cur_pos < c_length:
+        while cur_pos >= 0:
             num = stocks[cur_pos]
             if num == max_num:
                 break
             else:
                 sum += max_num - num
-                cur_pos += 1
-        cur_pos += 1
+                cur_pos -= 1
+        cur_pos -= 1
     
     res_list.append(sum)
     
