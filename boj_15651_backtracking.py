@@ -13,5 +13,5 @@ def next_num(count):
         cur_arr.append(i)
         next_num(count - 1)
         cur_arr.pop()
-        
+
 next_num(m)
