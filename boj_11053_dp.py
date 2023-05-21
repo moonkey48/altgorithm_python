@@ -1,20 +1,16 @@
 import sys
 input = sys.stdin.readline
+N = int(input())
 
-n = int(input())
-num_list = list(map(int, input().rstrip().split(" ")))
+A = [0]
 
-# max_list = [max_num, count]
-max_list = []
-max_list.append([num_list[0], 1])
+dp = [0] * (N+5)
 
-for i in range(1, n):
-    for j in range(len(max_list)):
-        if num_list[i] > max_list[j][0]:
-            max_list[j][0] = num_list[i]
-            max_list[j][1] += 1
-        else:
-            max_list.append([num_list[i], 1]) 
-# max_list.sort(key = lambda x : x[1], reverse=True)
-print(max_list)
-print(max_list[0][1])
+A += list(map(int, input().strip().split()))
+    
+for i in range(1, N+1):
+    for j in range(i): 
+        if A[i] > A[j]:
+            dp[i] = max(dp[j]+1, dp[i])
+            
+print(max(dp))
