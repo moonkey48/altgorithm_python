@@ -3,10 +3,29 @@ input = sys.stdin.readline
 
 input_str = input()
 
-cur_pos = 0
+total = 0
+temp = ''
+is_minus = False
 
-num_list = []
+for char in input_str:
 
-while cur_pos < len(input_str):
-    if input_str[cur_pos].isdigit()xw
-        
+    if char.isdigit():
+        temp += char
+    elif char == '-':
+        if is_minus == True:
+            total -= int(temp)   
+            temp = '' 
+        else:
+            total += int(temp)
+            temp = ''
+            is_minus = True
+    else:
+        if is_minus == False:
+            total += int(temp)
+            temp = ''
+        else:
+            total -= int(temp)
+            temp = ''
+print(total)
+
+1-2-3+4
