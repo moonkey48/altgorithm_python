@@ -22,6 +22,8 @@ else:
             dp[i - 3] + wines[i - 1] + wines[i],
         )
         dp[i] = max(dp[i -1], dp[i])
+    print(wines)
+    print(dp)
     print(dp[n])
 
 
