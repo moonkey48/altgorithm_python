@@ -27,5 +27,3 @@ for char in input_str:
             total -= int(temp)
             temp = ''
 print(total)
-
-1-2-3+4
