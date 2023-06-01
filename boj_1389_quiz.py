@@ -3,54 +3,40 @@ from collections import deque
 input = sys.stdin.readline
 
 n, m = list(map(int, input().rstrip().split(" ")))
-graph = [[] for i in range(int(n + 1))]
+
+r = {}
+for i in range(1, n + 1):
+    r[i] = []
+
 for i in range(m):
-    from_person, to_person = list(map(int, input().rstrip().split(" ")))
-    graph[from_person].append(to_person)
-    graph[to_person].append(from_person)
+    f, t = list(map(int, input().rstrip().split(" ")))
+    r[f].append(t)
+    r[t].append(f)
 
-print(graph)
-# 1부터 n까지 돌면서 자신을 뺀 수만큼 돌려서 이동 가능 횛수 더해서 출력
-def bfs(st):
-    que = deque()
-    total_count = 0
-    
-    for i in range(1, n + 1):  
-        if i == st:
+print(r)
+cur_visited = []
+sum_list = [0] * (n + 1)
+def find_num(count, start, init_num, to_find):
+    global sum_list
+    # print(count,start, to_find)
+    arr = r[start]
+    for num_to in arr:
+        if num_to == to_find:
+            sum_list[init_num] += count
+            print([count, start,init_num, to_find])
+            return
+        if num_to in cur_visited:
             continue
-        visited = [False] * (n + 1)    
-        distance = [0] * ( n + 1)
-        distance[st] = 0
-        visited[st] = True
         
-        for k in graph[st]:
-            distance[k] = distance[st] + 1
-            que.append(k)
-        
-        while len(que) != 0:
-            node = que.popleft()
-            
-            if visited[node] == True:
-                continue
-            
-            visited[node] = True
-            
-            if node == i:
-                total_count += distance[node]
-                break
-            for j in graph[node]:
-                distance[j] = distance[node] + 1
-                que.append(j)
-                
-        print([st, i, total_count])
-    return total_count
-
-sum_list = []
-for i in range(1,n + 1):
-    # 한사람씩
-    sum = bfs(i)
-    sum_list.append(sum)
-
+        cur_visited.append(num_to)
+        find_num(count + 1, num_to, init_num,to_find)
+        cur_visited.pop()
     
-print(min(sum_list))
-
+for i in range(1, n + 1):
+    for j in range(1, n + 1):
+        if i != j:
+            cur_visited.append(i)
+            print([i,j])
+            find_num(1, i, i, j)
+            cur_visited.pop()
+print(sum_list)
