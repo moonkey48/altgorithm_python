@@ -53,5 +53,5 @@ for i in range(row):
         
         
 print(max_trash)
-# print(place)
+
     
