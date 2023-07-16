@@ -19,10 +19,8 @@ while len(que) != 0:
             continue
         if buildings[next] == -1:
             buildings[next] = buildings[cur] + 1
-            print(next)
             que.append(next)
         elif buildings[next] != buildings[cur] + 1:
-            print(next)
             buildings[next] = min(buildings[next], buildings[cur] + 1)
 
 if buildings[destination] == -1:
